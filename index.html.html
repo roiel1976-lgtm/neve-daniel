@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>הצעת מחיר – ESHUV | נווה דניאל</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:       #0f2044;
+    --blue:       #1a4a8a;
+    --blue-mid:   #2563b0;
+    --blue-light: #dbeafe;
+    --blue-pale:  #eff6ff;
+    --gold:       #c8860a;
+    --gold-light: #fef3c7;
+    --gold-pale:  #fffbeb;
+    --green:      #15803d;
+    --green-pale: #f0fdf4;
+    --red:        #b91c1c;
+    --gray-100:   #f8fafc;
+    --gray-200:   #e2e8f0;
+    --gray-300:   #cbd5e1;
+    --gray-500:   #64748b;
+    --gray-700:   #334155;
+    --white:      #ffffff;
+    --text:       #0f172a;
+    --shadow-sm:  0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
+    --shadow:     0 4px 16px rgba(15,32,68,.12);
+    --shadow-lg:  0 12px 40px rgba(15,32,68,.18);
+    --radius:     12px;
+    --radius-sm:  8px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { font-size: 16px; }
+
+  body {
+    font-family: 'Assistant', 'Heebo', sans-serif;
+    background: #e8edf5;
+    color: var(--text);
+    min-height: 100vh;
+    direction: rtl;
+    padding: 40px 20px 60px;
+  }
+
+  /* ─── PAGE WRAPPER ─── */
+  .page {
+    max-width: 960px;
+    margin: 0 auto;
+    background: var(--white);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    animation: fadeUp .6s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(24px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+
+  /* ─── HEADER ─── */
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 60%, #2a5f9e 100%);
+    padding: 48px 52px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 32px;
+  }
+  .logo-badge {
+    background: rgba(255,255,255,.12);
+    border: 1px solid rgba(255,255,255,.2);
+    border-radius: 50px;
+    padding: 8px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    backdrop-filter: blur(10px);
+  }
+  .logo-badge .sys-name {
+    font-family: 'Heebo', sans-serif;
+    font-weight: 900;
+    font-size: 1.1rem;
+    color: var(--white);
+    letter-spacing: 1px;
+  }
+  .logo-badge .sep { color: rgba(255,255,255,.4); }
+  .logo-badge .yishuv { color: rgba(255,255,255,.75); font-size: .9rem; font-weight: 400; }
+
+  .quote-meta {
+    text-align: left;
+    direction: ltr;
+  }
+  .quote-meta .label { color: rgba(255,255,255,.5); font-size: .75rem; text-transform: uppercase; letter-spacing: 1px; }
+  .quote-meta .value { color: rgba(255,255,255,.9); font-size: .85rem; font-weight: 600; margin-top: 2px; }
+
+  .hero-title { position: relative; z-index: 1; }
+  .hero-title h1 {
+    font-family: 'Heebo', sans-serif;
+    font-weight: 900;
+    font-size: 3.2rem;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+  .hero-title .sub {
+    color: rgba(255,255,255,.6);
+    font-size: 1.1rem;
+    font-weight: 300;
+  }
+
+  .gold-bar {
+    height: 4px;
+    background: linear-gradient(90deg, var(--gold), #f0c040, var(--gold));
+    margin-top: 36px;
+    border-radius: 2px;
+    opacity: .85;
+  }
+
+  /* ─── BODY ─── */
+  .body { padding: 44px 52px; }
+
+  /* ─── SECTION HEADER ─── */
+  .section-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--gray-200);
+  }
+  .section-head .icon {
+    width: 36px; height: 36px;
+    background: var(--blue-light);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .section-head h2 {
+    font-family: 'Heebo', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--navy);
+  }
+
+  .section { margin-bottom: 40px; }
+
+  /* ─── INFO GRID ─── */
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+  .info-card {
+    background: var(--gray-100);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .info-card .ic-label { font-size: .72rem; color: var(--gray-500); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 4px; }
+  .info-card .ic-value { font-size: .95rem; font-weight: 700; color: var(--navy); }
+
+  /* ─── INTRO TEXT ─── */
+  .intro-text {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--gray-700);
+    margin-bottom: 16px;
+  }
+  .intro-text strong { color: var(--navy); font-weight: 700; }
+
+  /* ─── REPLACE BOX ─── */
+  .replace-box {
+    background: var(--gold-pale);
+    border: 1px solid #fcd34d;
+    border-right: 4px solid var(--gold);
+    border-radius: var(--radius-sm);
+    padding: 18px 20px;
+    margin-bottom: 40px;
+  }
+  .replace-box .rb-title {
+    font-weight: 700;
+    color: var(--gold);
+    font-size: .85rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+  }
+  .replace-pills { display: flex; gap: 10px; flex-wrap: wrap; }
+  .pill {
+    background: var(--white);
+    border: 1px solid #fcd34d;
+    border-radius: 50px;
+    padding: 5px 16px;
+    font-size: .88rem;
+    font-weight: 600;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .pill::before { content: '✓'; color: var(--green); font-weight: 800; }
+
+  /* ─── MODULES TABLE ─── */
+  .mod-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 40px;
+  }
+  .mod-table thead tr { background: var(--navy); }
+  .mod-table thead th {
+    color: var(--white);
+    font-size: .8rem;
+    font-weight: 700;
+    padding: 14px 18px;
+    text-align: right;
+    letter-spacing: .3px;
+  }
+  .mod-table thead th:first-child { width: 48px; text-align: center; }
+  .mod-table tbody tr { transition: background .15s; }
+  .mod-table tbody tr:nth-child(odd) { background: var(--gray-100); }
+  .mod-table tbody tr:nth-child(even) { background: var(--white); }
+  .mod-table tbody tr:hover { background: var(--blue-pale); }
+  .mod-table tbody tr:last-child { background: var(--gold-pale) !important; }
+  .mod-table td {
+    padding: 14px 18px;
+    font-size: .93rem;
+    color: var(--gray-700);
+    border-bottom: 1px solid var(--gray-200);
+    vertical-align: middle;
+  }
+  .mod-table td:first-child {
+    text-align: center;
+    font-weight: 800;
+    color: var(--blue-mid);
+    width: 48px;
+  }
+  .mod-table td.mod-name { font-weight: 700; color: var(--navy); }
+  .mod-table td.star-cell { color: var(--gold); font-size: 1.1rem; }
+  .mod-table td.gold-text { color: #92400e; font-weight: 700; }
+  .mod-table td.gold-desc { color: #a16207; font-style: italic; }
+
+  /* ─── PRICING ─── */
+  .price-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .price-card {
+    border-radius: var(--radius);
+    padding: 24px 26px;
+    position: relative;
+    overflow: hidden;
+  }
+  .price-card.setup {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+    box-shadow: 0 8px 24px rgba(15,32,68,.25);
+  }
+  .price-card.monthly {
+    background: var(--gray-100);
+    border: 2px solid var(--gray-200);
+  }
+  .price-card .pc-type {
+    font-size: .75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .price-card.setup .pc-type { color: rgba(255,255,255,.55); }
+  .price-card.monthly .pc-type { color: var(--gray-500); }
+  .price-card .pc-label {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+  .price-card.setup .pc-label { color: rgba(255,255,255,.9); }
+  .price-card.monthly .pc-label { color: var(--navy); }
+  .price-card .pc-amount {
+    font-family: 'Heebo', sans-serif;
+    font-weight: 900;
+    font-size: 2.4rem;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .price-card.setup .pc-amount { color: #fbbf24; }
+  .price-card.monthly .pc-amount { color: var(--navy); }
+  .price-card .pc-vat {
+    font-size: .8rem;
+    opacity: .6;
+    margin-bottom: 16px;
+  }
+  .price-card.setup .pc-vat { color: var(--white); }
+  .price-card.monthly .pc-vat { color: var(--gray-500); }
+  .price-card .pc-breakdown {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    border-top: 1px solid rgba(255,255,255,.15);
+    padding-top: 12px;
+    font-size: .8rem;
+  }
+  .price-card.monthly .pc-breakdown { border-color: var(--gray-200); }
+  .price-card .pc-breakdown span { display: flex; justify-content: space-between; }
+  .price-card.setup .pc-breakdown span { color: rgba(255,255,255,.7); }
+  .price-card.monthly .pc-breakdown span { color: var(--gray-500); }
+  .price-card.setup .pc-breakdown span b { color: var(--white); }
+  .price-card.monthly .pc-breakdown span b { color: var(--navy); }
+
+  .price-badge {
+    position: absolute;
+    top: 0; left: 0;
+    background: var(--gold);
+    color: var(--white);
+    font-size: .7rem;
+    font-weight: 800;
+    padding: 4px 12px;
+    border-radius: 0 0 var(--radius-sm) 0;
+  }
+
+  /* ─── WATER MODULE CALLOUT ─── */
+  .water-box {
+    background: var(--blue-pale);
+    border: 1px solid #bfdbfe;
+    border-right: 4px solid var(--blue-mid);
+    border-radius: var(--radius-sm);
+    padding: 20px 22px;
+    margin-bottom: 40px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .water-icon {
+    font-size: 2rem;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .water-box h3 { font-size: 1rem; font-weight: 800; color: var(--navy); margin-bottom: 8px; }
+  .water-box p { font-size: .9rem; line-height: 1.65; color: var(--gray-700); }
+  .water-box p strong { color: var(--navy); font-weight: 700; }
+
+  /* ─── PAYMENT ALERT ─── */
+  .payment-alert {
+    background: linear-gradient(135deg, #fff7ed, #fffbeb);
+    border: 1px solid #fed7aa;
+    border-right: 5px solid var(--gold);
+    border-radius: var(--radius);
+    padding: 24px 26px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 12px rgba(200,134,10,.1);
+  }
+  .payment-alert .pa-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .pa-icon { font-size: 1.4rem; }
+  .payment-alert h3 { font-size: 1.05rem; font-weight: 800; color: #92400e; }
+  .payment-alert .pa-sub { font-size: .87rem; color: #a16207; margin-bottom: 16px; }
+  .payment-rows { display: flex; flex-direction: column; gap: 10px; }
+  .payment-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--white);
+    border: 1px solid #fde68a;
+    border-radius: var(--radius-sm);
+    padding: 12px 16px;
+  }
+  .pr-arrow { color: var(--blue-mid); font-weight: 900; font-size: 1rem; flex-shrink: 0; }
+  .pr-label { font-weight: 700; color: var(--navy); font-size: .93rem; min-width: 130px; }
+  .pr-amount { font-weight: 800; color: var(--blue); font-size: 1rem; margin-left: auto; direction: ltr; }
+  .pr-note { font-size: .8rem; color: var(--gray-500); }
+  .pr-note.urgent { color: var(--red); font-weight: 700; }
+
+  .pa-footer {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid #fde68a;
+    font-size: .87rem;
+    color: #92400e;
+    line-height: 1.6;
+  }
+  .pa-footer strong { color: var(--navy); }
+
+  /* ─── TIMELINE ─── */
+  .timeline { position: relative; margin-bottom: 40px; }
+  .tl-item {
+    display: flex;
+    gap: 0;
+    margin-bottom: 0;
+  }
+  .tl-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 28px;
+    flex-shrink: 0;
+    margin-left: 16px;
+  }
+  .tl-dot {
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    border: 2px solid var(--blue-mid);
+    background: var(--white);
+    flex-shrink: 0;
+    z-index: 1;
+    margin-top: 3px;
+    transition: transform .2s;
+  }
+  .tl-item:hover .tl-dot { transform: scale(1.3); background: var(--blue-mid); }
+  .tl-item.final .tl-dot { background: var(--gold); border-color: var(--gold); width: 18px; height: 18px; }
+  .tl-line {
+    width: 2px;
+    background: var(--gray-200);
+    flex: 1;
+    margin-top: 2px;
+  }
+  .tl-item:last-child .tl-line { display: none; }
+  .tl-content {
+    flex: 1;
+    background: var(--gray-100);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-sm);
+    padding: 14px 18px;
+    margin-bottom: 12px;
+    display: grid;
+    grid-template-columns: 120px 1fr auto;
+    align-items: center;
+    gap: 16px;
+    transition: box-shadow .2s, border-color .2s;
+  }
+  .tl-item:hover .tl-content { box-shadow: var(--shadow); border-color: var(--blue-mid); }
+  .tl-item.final .tl-content {
+    background: linear-gradient(135deg, var(--navy), var(--blue));
+    border-color: var(--blue);
+  }
+  .tl-date { font-weight: 800; font-size: .9rem; color: var(--blue-mid); }
+  .tl-item.final .tl-date { color: #fbbf24; }
+  .tl-milestone { font-weight: 700; font-size: .93rem; color: var(--navy); }
+  .tl-item.final .tl-milestone { color: var(--white); }
+  .tl-detail { font-size: .82rem; color: var(--gray-500); }
+  .tl-item.final .tl-detail { color: rgba(255,255,255,.65); }
+  .tl-badge {
+    background: var(--blue-light);
+    color: var(--blue-mid);
+    font-size: .72rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 50px;
+    white-space: nowrap;
+  }
+  .tl-item.final .tl-badge { background: rgba(251,191,36,.2); color: #fbbf24; }
+
+  /* ─── FOOTER ─── */
+  .quote-footer {
+    background: var(--navy);
+    padding: 32px 52px;
+    text-align: center;
+  }
+  .quote-footer p {
+    color: rgba(255,255,255,.6);
+    font-size: .85rem;
+    line-height: 1.6;
+  }
+  .quote-footer strong { color: rgba(255,255,255,.9); }
+  .footer-note {
+    margin-top: 12px;
+    font-size: .75rem;
+    color: rgba(255,255,255,.35);
+    border-top: 1px solid rgba(255,255,255,.08);
+    padding-top: 12px;
+  }
+
+  /* ─── PRINT ─── */
+  @media print {
+    body { background: white; padding: 0; }
+    .page { box-shadow: none; border-radius: 0; }
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 700px) {
+    .body { padding: 28px 24px; }
+    .hero { padding: 32px 28px 28px; }
+    .hero-title h1 { font-size: 2.2rem; }
+    .info-grid { grid-template-columns: 1fr 1fr; }
+    .price-grid { grid-template-columns: 1fr; }
+    .tl-content { grid-template-columns: 1fr; gap: 6px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ═══ HERO ═══ -->
+  <div class="hero">
+    <div class="hero-top">
+      <div class="logo-badge">
+        <span class="sys-name">ESHUV</span>
+        <span class="sep">|</span>
+        <span class="yishuv">נווה דניאל</span>
+      </div>
+      <div class="quote-meta">
+        <div class="label">Quote No.</div>
+        <div class="value">ESHV-2026-001</div>
+        <div class="label" style="margin-top:8px">תאריך</div>
+        <div class="value">מאי 2026</div>
+      </div>
+    </div>
+    <div class="hero-title">
+      <h1>הצעת מחיר</h1>
+      <div class="sub">התחברות מלאה למערכת ESHUV — כולל כל המודולים והשדרוגים</div>
+    </div>
+    <div class="gold-bar"></div>
+  </div>
+
+  <!-- ═══ BODY ═══ -->
+  <div class="body">
+
+    <!-- Info cards -->
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="ic-label">מוציא ההצעה</div>
+        <div class="ic-value">מערכת ESHUV</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-label">מיועד ל</div>
+        <div class="ic-value">ישוב נווה דניאל</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-label">תוקף ההצעה</div>
+        <div class="ic-value">30 יום</div>
+      </div>
+      <div class="info-card">
+        <div class="ic-label">תאריך הפעלה</div>
+        <div class="ic-value">1/1/2027</div>
+      </div>
+    </div>
+
+    <!-- ─── SECTION: מהות ─── -->
+    <div class="section">
+      <div class="section-head">
+        <div class="icon">🏘️</div>
+        <h2>מהות ההצעה</h2>
+      </div>
+      <p class="intro-text">
+        הצעה זו מתייחסת לחיבור מלא של ישוב נווה דניאל למערכת ESHUV, כולל כל המודולים הנדרשים לניהול הקהילה.
+        המערכת תאפשר לישוב <strong>להתנתק לחלוטין</strong> מכל המערכות החיצוניות הקיימות ולנהל את כל הפעילות ממקום אחד.
+      </p>
+      <div class="replace-box">
+        <div class="rb-title">מערכות שיוחלפו על ידי ESHUV</div>
+        <div class="replace-pills">
+          <div class="pill">תקציבית</div>
+          <div class="pill">אביה</div>
+          <div class="pill">קריאות נוכחות</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── SECTION: מודולים ─── -->
+    <div class="section">
+      <div class="section-head">
+        <div class="icon">🧩</div>
+        <h2>מודולים הכלולים בהצעה</h2>
+      </div>
+      <table class="mod-table">
+        <thead>
+          <tr>
+            <th style="text-align:center">#</th>
+            <th>מודול</th>
+            <th>תיאור</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td class="mod-name">מודולים לניהול הקהילה</td>
+            <td>ניהול תושבים, פניות, אירועים ותקשורת קהילתית שוטפת</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td class="mod-name">הנהלת חשבונות ושעון נוכחות</td>
+            <td>ניהול תקציב, חיובים, תשלומים ומעקב נוכחות עובדים</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td class="mod-name">מודול ביטחון</td>
+            <td>ניהול כוננויות, תורנויות ודיווחי ביטחון</td>
+          </tr>
+          <tr>
+            <td class="star-cell">★</td>
+            <td class="gold-text">שדרוגים עתידיים</td>
+            <td class="gold-desc">כל השדרוגים שיתבקשו כלולים ללא עלות נוספת</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ─── SECTION: מחירון ─── -->
+    <div class="section">
+      <div class="section-head">
+        <div class="icon">💰</div>
+        <h2>מחירון ועלויות</h2>
+      </div>
+      <div class="price-grid">
+        <div class="price-card setup">
+          <div class="price-badge">תשלום ראשוני</div>
+          <div class="pc-type">עלות הקמה</div>
+          <div class="pc-label">חד פעמי — חיבור ואינטגרציה מלאה</div>
+          <div class="pc-amount">₪10,030</div>
+          <div class="pc-vat">כולל מע"מ 18%</div>
+          <div class="pc-breakdown">
+            <span><span>לפני מע"מ</span><b>₪8,500</b></span>
+            <span><span>מע"מ (18%)</span><b>₪1,530</b></span>
+          </div>
+        </div>
+        <div class="price-card monthly">
+          <div class="pc-type">תחזוקה חודשית</div>
+          <div class="pc-label">תמיכה ותחזוקה שוטפת חודש בחודשו</div>
+          <div class="pc-amount">₪1,770</div>
+          <div class="pc-vat">כולל מע"מ 18%</div>
+          <div class="pc-breakdown">
+            <span><span>לפני מע"מ</span><b>₪1,500</b></span>
+            <span><span>מע"מ (18%)</span><b>₪270</b></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── WATER MODULE ─── -->
+    <div class="water-box">
+      <div class="water-icon">💧</div>
+      <div>
+        <h3>פיתוח מיוחד: מודול חישוב צריכת מים — בקשת לאה</h3>
+        <p>
+          אנו מתחייבים לפתח מודול חישובי צריכת מים המותאם לצרכי הישוב.
+          הפיתוח יתבצע <strong>במקביל להתחברות למערכת</strong> ויעמוד זמין לפיילוט מלא
+          <strong>כחודש לפני</strong> תאריך תחילת הפעילות — <strong>1 בינואר 2027</strong>.
+        </p>
+      </div>
+    </div>
+
+    <!-- ─── PAYMENT ALERT ─── -->
+    <div class="section">
+      <div class="section-head">
+        <div class="icon">📋</div>
+        <h2>תנאי תשלום והתחלת עבודה</h2>
+      </div>
+      <div class="payment-alert">
+        <div class="pa-head">
+          <span class="pa-icon">⚠️</span>
+          <h3>תנאי לתחילת העבודה והפיתוח</h3>
+        </div>
+        <div class="pa-sub">על מנת שנוכל לעמוד בהתחייבויותינו ובלוח הזמנים המחייב, נדרש תשלום כלהלן עם אישור ההצעה:</div>
+        <div class="payment-rows">
+          <div class="payment-row">
+            <span class="pr-arrow">◀</span>
+            <span class="pr-label">עלות הקמה</span>
+            <span class="pr-note urgent">תשלום מלא עם חתימת ההסכם</span>
+            <span class="pr-amount">₪10,030</span>
+          </div>
+          <div class="payment-row">
+            <span class="pr-arrow">◀</span>
+            <span class="pr-label">תחזוקה חודשית</span>
+            <span class="pr-note">החל ממועד ההפעלה, ב-1 לכל חודש</span>
+            <span class="pr-amount">₪1,770/חודש</span>
+          </div>
+        </div>
+        <div class="pa-footer">
+          קבלת תשלום ההקמה מהווה את אות הזינוק לצוות הפיתוח שלנו.
+          ללא קבלת התשלום לא נוכל לפתוח את תהליך ההתחברות ולעמוד בהתחייבות הפיתוח לתאריך <strong>1/1/2027</strong>.
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── TIMELINE ─── -->
+    <div class="section">
+      <div class="section-head">
+        <div class="icon">📅</div>
+        <h2>לוח זמנים מחייב</h2>
+      </div>
+      <div class="timeline">
+
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          <div class="tl-content">
+            <div class="tl-date">מיידי</div>
+            <div>
+              <div class="tl-milestone">תשלום הקמה ואישור הצעה</div>
+              <div class="tl-detail">פתיחת תהליך ההתחברות</div>
+            </div>
+            <div class="tl-badge">צעד ראשון</div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          <div class="tl-content">
+            <div class="tl-date">Q3 2026</div>
+            <div>
+              <div class="tl-milestone">חיבור מלא למערכת ESHUV</div>
+              <div class="tl-detail">כל המודולים פעילים בסביבת ייצור</div>
+            </div>
+            <div class="tl-badge">הטמעה</div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          <div class="tl-content">
+            <div class="tl-date">דצמבר 2026</div>
+            <div>
+              <div class="tl-milestone">מסירת מודול מים לפיילוט</div>
+              <div class="tl-detail">כחודש לפני תאריך הפעלה מלא</div>
+            </div>
+            <div class="tl-badge">פיילוט</div>
+          </div>
+        </div>
+
+        <div class="tl-item final">
+          <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          <div class="tl-content">
+            <div class="tl-date">1/1/2027</div>
+            <div>
+              <div class="tl-milestone">הפעלה מלאה של כל המערכת</div>
+              <div class="tl-detail">כולל מודול חישוב צריכת מים</div>
+            </div>
+            <div class="tl-badge">🏁 Go Live</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- /body -->
+
+  <!-- ═══ FOOTER ═══ -->
+  <div class="quote-footer">
+    <p>אנו שמחים להיות שותפים להתפתחות <strong>ישוב נווה דניאל</strong></p>
+    <p>לאישור ההצעה ולפרטים נוספים, אנא צרו קשר עם צוות <strong>ESHUV</strong></p>
+    <div class="footer-note">מסמך זה מהווה הצעת מחיר רשמית · תוקף 30 יום ממועד הוצאתה · ESHV-2026-001</div>
+  </div>
+
+</div><!-- /page -->
+
+</body>
+</html>
